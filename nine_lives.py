@@ -26,21 +26,17 @@ while index < len(secret_word):
 	clue.append('?')
 	index = index + 1
 
-def update_clue(guess_letter , secret_word, clue):
+unknow_letters = len(secret_word)
+
+def update_clue(guess_letter , secret_word, clue,unknow_letters):
 	index = 0
 	while index < len(secret_word):
 		if guess_letter == secret_word[index]:
 			clue[index] = guess_letter
+			unknow_letters = unknow_letters - 1
 		index = index +1
+	return unknow_letters
 
-def check_clue(clue):
-	index = 0
-	count = 0
-	while index < len(clue):
-		if clue[index] != '?':
-			count = count + 1
-		index  = index + 1
-	return count
 
 while lives > 0:
 	print(clue)
@@ -57,15 +53,15 @@ while lives > 0:
 		break
     
 	if guess in secret_word and len(guess) == 1:
-		update_clue(guess, secret_word, clue)
+		unknow_letters = update_clue(guess, secret_word, clue, unknow_letters)
 	else:
 		print('Incorrect. You lose a life')
 		lives = lives - 1
 
-	if check_clue(clue) == 5:
+	if unknow_letters == 0:
 		guess_word_correctly = True
 		break
-
+	
 if guess_word_correctly == True:
 	print('You won! The correct word was ' + secret_word)
 elif guess_word_correctly == 2:
