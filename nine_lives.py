@@ -3,8 +3,9 @@ lives = 9
 words_Easy = ['fairy', 'teeth', 'shirt','otter','plane']
 words_Normal = ['cocacola', 'macdonal', 'circlek','lotteria','cinima']
 words_Hard = ['hipopotamus', 'homolocu', 'Gastonia','camila','dinosaur','neoastrong']
-
-difficulty = input('Choice difficulty (type 1, 2, or 3):\n 1) Easy\n 2) Normal\n 3) Hard\n')
+print("\n============Start game============")
+print("           Nine Lives           ")
+difficulty = input('Choice difficulty (type 1, 2, or 3):\n 1) Easy\n 2) Normal\n 3) Hard\n 4) Quit\n')
 difficulty = int(difficulty)
 
 if difficulty == 1:
@@ -13,10 +14,12 @@ if difficulty == 1:
 elif difficulty == 2:
 	lives = 9
 	secret_word = random.choice(words_Normal)
-else:
+elif difficulty == 2:
 	secret_word = random.choice(words_Hard)
 	lives = 6
-
+else: 
+	quit()
+	
 clue = list()
 heart_symbol = u'\u2665'
 guess_word_correctly = False
@@ -61,7 +64,7 @@ while lives > 0:
 	if unknow_letters == 0:
 		guess_word_correctly = True
 		break
-	
+
 if guess_word_correctly == True:
 	print('You won! The correct word was ' + secret_word)
 elif guess_word_correctly == 2:
